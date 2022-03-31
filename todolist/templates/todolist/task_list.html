@@ -1,0 +1,32 @@
+
+{% if request.user.is_authenticated %}
+<p> {{request.user}}</p>
+<a href="{% url 'todolist:logout' %} ">LOg out</a>
+{%  else  %}
+<a href="{% url  'todolist:login'  %}" >LOG IN</a>
+
+{% endif %}
+
+<h1>Hello Kiash{{color}} </h1>
+
+
+<a href="{% url 'todolist:task-create'  %}">add item please</a>
+ <table>
+     <tr>
+         <th>Items</th>
+         <th></th>
+     </tr>
+     <tr>
+        {% for task in tasks %}
+         <td>{{task.title}}</td>
+         <td> <a href="{% url 'todolist:task-detail' task.id  %}">View</a></td>
+         <td></td>
+         <td> <a href="{% url 'todolist:task-update' task.id  %}">update</a></td>
+        <td></td>
+        <td> <a href="{% url 'todolist:task-delete' task.id %}">Delete</a></td>
+
+     </tr>
+     {% empty %}
+     <h1>No item in list </h1>
+     {%  endfor %} 
+ </table>
