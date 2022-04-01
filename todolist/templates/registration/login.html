@@ -1,3 +1,5 @@
+{% extends 'main.html' %}
+{% block content %}
 <h1>LOGIN PLEASE AND GO BACK</h1>
 
 
@@ -7,3 +9,7 @@
 
     <input type="submit" value="login"  >
 </form>
+
+<p> Do you have an account ? : <a href="{% url 'todolist:register' %}">Regitster</a> </p>
+
+{% endblock %}

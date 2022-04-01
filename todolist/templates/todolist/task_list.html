@@ -1,4 +1,6 @@
+{% extends 'main.html' %}
 
+{% block content %}
 {% if request.user.is_authenticated %}
 <p> {{request.user}}</p>
 <a href="{% url 'todolist:logout' %} ">LOg out</a>
@@ -11,15 +13,20 @@
 
 
 <a href="{% url 'todolist:task-create'  %}">add item please</a>
+<from method='GET'>
+    <input type='text' name='search-area' value="{{search_input}}">
+    <input type='submit' name='Search'>
+    <input type=''>
+</from>
  <table>
      <tr>
          <th>Items</th>
          <th></th>
      </tr>
      <tr>
-        {% for task in tasks %}
+        {% for task in task %}
          <td>{{task.title}}</td>
-         <td> <a href="{% url 'todolist:task-detail' task.id  %}">View</a></td>
+         {% comment %} <td> <a href="{% url 'todolist:task-detail' task.id  %}">View</a></td> {% endcomment %}
          <td></td>
          <td> <a href="{% url 'todolist:task-update' task.id  %}">update</a></td>
         <td></td>
@@ -30,3 +37,4 @@
      <h1>No item in list </h1>
      {%  endfor %} 
  </table>
+ {% endblock %}

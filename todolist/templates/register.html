@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<h1>Hello register</h2>
+
+
+    <form method='POST' action=""> 
+        {% csrf_token %}
+        {{form.as_p}}
+        {% comment %} <input type="register", value="Register"> {% endcomment %}
+        <input type='submit' value='register'/>
+
+    </form>
+    <p>Already have an account ?<a href="{% url 'todolist:login' %}">Login</a> </p>
+
+    {%  endblock content %}

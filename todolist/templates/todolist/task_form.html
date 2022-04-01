@@ -1,3 +1,6 @@
+
+{% extends 'main.html'%}
+{% block content %}
 <h1>task form meen</h1>
 <a href="{% url 'todolist:task' %}" >Go Back</a>
 <form method='POST' action=''>
@@ -5,6 +8,9 @@
     {{form.as_p}}
 
     <input type='submit',value='SAVE'>
-
 </form>
+
+{% endblock %}
+
+
 
