@@ -2,16 +2,31 @@
 
 
 {% block content %}
-<h1>Hello register</h2>
+<div class="header-bar">
+    <h1>Hello register</h2>
+</div>
 
-
+<div class="card-body">
     <form method='POST' action=""> 
         {% csrf_token %}
-        {{form.as_p}}
-        {% comment %} <input type="register", value="Register"> {% endcomment %}
-        <input type='submit' value='register'/>
+
+        <label>{{form.username.label}}</label>
+        {{form.username}}}
+
+
+        <label>{{form.password1.label}}</label>
+        {{form.password1}}
+
+        <label>{{form.password2.label}}</label>
+        {{form.password2}}
+
+        <input class="button" type='submit' value='register'/>
 
     </form>
+     
     <p>Already have an account ?<a href="{% url 'todolist:login' %}">Login</a> </p>
+</div>
+
+  
 
     {%  endblock content %}

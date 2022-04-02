@@ -1,14 +1,22 @@
 
 {% extends 'main.html'%}
 {% block content %}
-<h1>task form meen</h1>
-<a href="{% url 'todolist:task' %}" >Go Back</a>
-<form method='POST' action=''>
-    {% csrf_token %} 
-    {{form.as_p}}
 
-    <input type='submit',value='SAVE'>
-</form>
+
+<div class="header-bar">
+    <a href="{% url 'todolist:task' %}" >&#8592; Back</a>
+
+</div>
+<div class="card-body">
+    <form method='POST' action=''>
+        {% csrf_token %} 
+        {{form.as_p}}
+    
+        <input class="button" type='submit',value='SAVE'>
+    </form>
+
+</div>
+
 
 {% endblock %}
 

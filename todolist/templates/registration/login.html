@@ -1,15 +1,22 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1>LOGIN PLEASE AND GO BACK</h1>
+
+<div class="header-bar">
+
+    <h1>LOGIN PLEASE</h1>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+    
+        <input class="button" type="submit" value="login"  >
+    </form>
+    <p> Do you have an account ? : <a href="{% url 'todolist:register' %}">Regitster</a> </p>
+</div>
 
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
 
-    <input type="submit" value="login"  >
-</form>
-
-<p> Do you have an account ? : <a href="{% url 'todolist:register' %}">Regitster</a> </p>
 
 {% endblock %}

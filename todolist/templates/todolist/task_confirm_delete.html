@@ -2,13 +2,21 @@
 
   {% block content %}
 
-<a  href="{% url 'todolist:task'  %}">Go back </a>
+  <div class="header-bar">
+    <a  href="{% url 'todolist:task'  %}">Go back </a>
 
-<form method='POST' >
+  </div>
+
+
+<div  class="card-body">
+  <form method='POST' >
     {%csrf_token%}
     <p> Are you sure tou want to delete"{{task}}"</p>
-    <input type='submit' value='delete'/>
+    <input class="button" type='submit' value='delete'/>
 
 </form>
+
+</div>
+
 
 {% endblock content %}

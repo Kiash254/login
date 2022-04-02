@@ -1,24 +1,62 @@
 {% extends 'main.html' %}
 
 {% block content %}
-{% if request.user.is_authenticated %}
-<p> {{request.user}}</p>
+
+
+<div class="header-bar">
+    <div>
+        <h1>Hello {{request.user|title}}</h1>
+        <h3  style="margin:0;"><i>{{count}}</i>Incomplete tasKS  </h3>
+
+    </div>
+
+    {% if request.user.is_authenticated %}
+{% comment %} <p> {{request.user}}</p> {% endcomment %}
 <a href="{% url 'todolist:logout' %} ">LOg out</a>
 {%  else  %}
 <a href="{% url  'todolist:login'  %}" >LOG IN</a>
 
 {% endif %}
+</div>
 
-<h1>Hello Kiash{{color}} </h1>
 
 
-<a href="{% url 'todolist:task-create'  %}">add item please</a>
-<from method='GET'>
-    <input type='text' name='search-area' value="{{search_input}}">
-    <input type='submit' name='Search'>
-    <input type=''>
-</from>
- <table>
+
+<h1>Hello  {{request.user|title}} </h1>
+
+ 
+
+<div id="search">
+    <form method='GET' style="margin:2opx;display:flex;" >
+        <input type='text' name='search-area' value="{{search_input}}">
+        <input class="button" type='submit' value='Search',>
+    </form>  
+    <a  id="add-link" href="{% url 'todolist:task-create'  %}">&#x2b</a>
+</div>
+
+<div  class="task-items-wrapper"> 
+    {% for task in task %}
+    <div  class="task-wrapper">
+        {% if task.complete %}
+        <div class="task-title">
+            <div class="task-complete-icons"></div>
+            <i><s><a href="{% url 'todolist:task-update' task.id  %}"> {{task}}</a></s></i>
+        </div>
+        <a  class="delete-task"  href="{% url 'todolist:task-delete' task.id %}">&#215;</a>
+        {% else %}
+        <div class="task-title">
+            <div class="task-incomplete-icons"></div>
+            <a href="{% url 'todolist:task-update' task.id  %}"> {{task}}</a>
+            <a  class="delete-task"  href="{% url 'todolist:task-delete' task.id %}">&#215;</a>
+        {% endif %}
+     
+    </div>
+    {% empty %}
+    <h1>No item in list </h1>
+    {%  endfor %} 
+
+</div>
+ {% comment %} <table>
      <tr>
          <th>Items</th>
          <th></th>
@@ -27,7 +65,7 @@
         {% for task in task %}
          <td>{{task.title}}</td>
          {% comment %} <td> <a href="{% url 'todolist:task-detail' task.id  %}">View</a></td> {% endcomment %}
-         <td></td>
+         {% comment %} <td></td>
          <td> <a href="{% url 'todolist:task-update' task.id  %}">update</a></td>
         <td></td>
         <td> <a href="{% url 'todolist:task-delete' task.id %}">Delete</a></td>
@@ -35,6 +73,7 @@
      </tr>
      {% empty %}
      <h1>No item in list </h1>
-     {%  endfor %} 
- </table>
+     {%  endfor %}
+    
+ </table> {% endcomment %}
  {% endblock %}
